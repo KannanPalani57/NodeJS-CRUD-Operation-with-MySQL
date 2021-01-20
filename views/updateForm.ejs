@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Form</title>
+</head>
+
+<style>
+
+button{
+   width: 70px;
+   height: 30px;
+   background: purple;
+   color: white;
+}
+
+input{
+  font-size: 1rem;
+  text-emphasis: wrap;  
+  padding: 0.4em 1em;
+
+}
+</style>
+<body>
+        <h3>Edit the user data : </h3>
+                      
+                       <form action = "/edit/<%= updateData.id %>" method = "post" class="field">
+                        <div>   
+                        <label for = "firstname">First name</label>
+                            <input type = "text" name = "firstname" value = "<%= updateData.firstname %>"placeholder = "Type Firstname" />
+                            </div>
+            
+                            <div className="field">
+                            <label for = "lastname">Last name</label>
+                            <input type = "text" name = "lastname" value = "<%= updateData.lastname %>" placeholder = "Type Lastname"  />
+                            </div>
+            
+                            <div className="field">
+                            <label for = "email">Email</label>
+                            <input type = "text" name = "email" value = "<%= updateData.email %>" placeholder = "Type Email" />
+                            </div>
+                            
+                            <div className="field">
+                            <label for = "password">Password</label>
+                            <input type = "password" name = "password" value = "<%= updateData.password %>" placeholder = "Type Password"/>
+                            </div>
+                            
+                            <div className="field">
+                            <label for = "cpassword">Confirm Password</label>
+                            <input type = "password" name = "confirmpassword" value = "<%= updateData.confirmpassword %>" placeholder = "Type Confirm Password"/>
+                            </div>
+                            
+                            <button type="submit">Update</button>
+
+                        </form>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="/css/style.css" type = "text/css">
+    <title>Node App</title>
+</head> 
+
+<style>
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+a{
+   text-decoration: none;
+   width: 70px;
+   height: 50px;
+   background: purple;
+   color: white;
+}
+
+button{
+   width: 70px;
+   height: 30px;
+   background: purple;
+   color: white;
+}
+
+input{
+  font-size: 1rem;
+  text-emphasis: wrap;  
+  padding: 0.4em 1em;
+
+}
+</style>
+
+
+<body>
+      
+    <% var id; %>
+   
+    <!-- <form id = "editForm" action = "edit/<%= id %>" method = "post" class="field">
+      <h3>Edit the data : </h3>
+                      
+     <div>   
+     <label for = "firstname">First name</label>
+         <input type = "text"  name = "firstname" placeholder = "Type Firstname" />
+         </div>
+
+         <div className="field">
+         <label for = "lastname">Last name</label>
+         <input type = "text" value = "" name = "lastname" placeholder = "Type Lastname"  />
+         </div>
+
+         <div className="field">
+         <label for = "email">Email</label>
+         <input type = "text" name = "email" placeholder = "Type Email" />
+         </div>
+         
+         <div className="field">
+         <label for = "password">Password</label>
+         <input type = "password" name = "password" placeholder = "Type Password"/>
+         </div>
+         
+         <div className="field">
+         <label for = "cpassword">Confirm Password</label>
+         <input type = "password" name = "confirmpassword" placeholder = "Type Confirm Password"/>
+         </div>
+         
+         <button type="submit">Submit</button>
+
+     </form> -->
+
+
+
+
+        <h3>Add User </h3>
+    <form id = "addUserForm" class = "addUser" action = "/add_data" method = "post" class="field">
+      <div>   
+      <label for = "firstname">First name</label>
+          <input type = "text" name = "firstname" placeholder = "Type Firstname" />
+          </div>
+
+          <div className="field">
+          <label for = "lastname">Last name</label>
+          <input type = "text" name = "lastname" placeholder = "Type Lastname"  />
+          </div>
+
+          <div className="field">
+          <label for = "email">Email</label>
+          <input type = "text" name = "email" placeholder = "Type Email" />
+          </div>
+          
+          <div className="field">
+          <label for = "password">Password</label>
+          <input type = "password" name = "password" placeholder = "Type Password"/>
+          </div>
+          
+          <div className="field">
+          <label for = "cpassword">Confirm Password</label>
+          <input type = "password" name = "confirmpassword" placeholder = "Type Confirm Password"/>
+          </div>
+          <button type="submit">Submit</button>
+      </form>
+
+      <br />
+    
+      <table >
+          <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Confirm Password</th>
+          <th>Edit</th>
+          <th>Delete</th>
+          <th>Edit with Modal</th>
+          <th>Delete with Modal</th>
+          </tr>
+  
+    
+          <% for(var i = 0; i < data.length; i++) { %>
+   
+        <tr>
+    
+           
+            
+       <td> <%=data[i].firstname %></td>
+       <td> <%= data[i].lastname %></td>
+       <td> <%= data[i].email %></td>
+       <td> <%= data[i].password %></td>
+       
+       <td> <%= data[i].confirmpassword %></td>
+       <% var editStatus = false %>
+       <td><a  id = "editbtn" href = "/getUser/<%= data[i].firstname  %>">Edit Data</a></td>
+       <td><a href = "delete/<%= data[i].id %>">Delete Row</a></td>
+
+        <td><button class = "<%= data[i].id  %>" id = "editbtn">Edit </button></td>
+       <td><button data-id = "<%= data[i].id %>" id = "deletebtn">Delete</button></td>
+        </tr>
+    
+      <% } %>
+  
+      <!-- <% for(var k = 0; k < data.length; k++) { %>
+        <div class = "modal" id = "modal">
+        <div class = "modal-content">
+            <span class="close">&times;</span>
+            <h2>
+                 Are you sure to delete to this data?
+            </h2>
+            <a href = "delete/<%= data[k].id %>">Delete Row</a>
+            <a class = "nobtn" href = "">No</a>
+         </div>  
+         </div>
+       <% } %> -->
+    </table>
+
+
+    <!-- Modal Part -->
+            <div class = "modal" id = "modal2">
+                    <div class = "modal-content">
+                            <h3>Edit the data : </h3>
+                      
+                       <form action = "edit/<%= id %>" method = "post" class="field">
+                        <div>   
+                        <label for = "firstname">First name</label>
+                            <input type = "text" name = "firstname" placeholder = "Type Firstname" />
+                            </div>
+            
+                            <div className="field">
+                            <label for = "lastname">Last name</label>
+                            <input type = "text" name = "lastname" placeholder = "Type Lastname"  />
+                            </div>
+            
+                            <div className="field">
+                            <label for = "email">Email</label>
+                            <input type = "text" name = "email" placeholder = "Type Email" />
+                            </div>
+                            
+                            <div className="field">
+                            <label for = "password">Password</label>
+                            <input type = "password" name = "password" placeholder = "Type Password"/>
+                            </div>
+                            
+                            <div className="field">
+                            <label for = "cpassword">Confirm Password</label>
+                            <input type = "password" name = "confirmpassword" placeholder = "Type Confirm Password"/>
+                            </div>
+                            
+                            <button type="submit">Submit</button>
+
+                        </form>
+                        <a class = "nobtn" href = "">Return to Index</a>
+
+                    </div>  
+                               
+                  </div>
+
+                
+           
+                      
+       
+   
+</body>
+
+    <script src = "/script/modalScript.js"></script>
+      
+</html>
