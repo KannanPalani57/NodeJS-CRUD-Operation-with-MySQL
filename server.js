@@ -49,15 +49,14 @@ app.get("/addData", (req, res) => {
 
 
 app.post("/add_data", (req, res) => {
-    console.log("hello")
-   let id = uuidv4();
+    
    let firstname = req.body.firstname;
    let lastname = req.body.lastname;
    let email = req.body.email;
    let password = req.body.password;
    let confirmpassword = req.body.confirmpassword;
 
-   const postQuery = "insert into users values('" + id + "','" + firstname + "','" + lastname + "', '" + email + "', '" + password + "', '" + confirmpassword + "');";
+   const postQuery = "insert into users(firstname, lastname, email, password, confirmpassword) values('" + firstname + "','" + lastname + "', '" + email + "', '" + password + "', '" + confirmpassword + "');";
 
    db.query(postQuery, (err, result) => {
     if (err) {
@@ -85,7 +84,8 @@ app.post("/edit/:id", (req, res) => {
     const confirmpassword = req.body.confirmpassword;
     
     const editQuery = "update users set firstname = '"+firstname+"',lastname = '"+lastname +"', email= '"+email+"',password= '"+password+"',confirmpassword= '"+confirmpassword+"'  where id = '"+id +"' ";
-    db.query(editQuery, (err, result) => {
+    console.log(editQuery)
+     db.query(editQuery, (err, result) => {
         if(err){
             return res.status(500).send(err)   
         }
@@ -113,17 +113,16 @@ app.get("/getUser/:name", (req, res) => {
 app.get("/delete/:id", (req, res) => {
     const getId = req.params.id;
     console.log(getId)
-//     const deleteQuery = "delete from users where id = '"+getId +"' ";
-//     db.query(deleteQuery, (err, result) => {
+    const deleteQuery = "delete from users where id = '"+getId +"' ";
+    db.query(deleteQuery, (err, result) => {
         
-//     if (err) {
-//         return res.status(500).send(err);
-//     }
-//     res.redirect("/")
-// }
-//     ) 
+    if (err) {
+        return res.status(500).send(err);
+    }
+    res.redirect("/")
+}
+    ) 
 
-      res.redirect("/")   
 })
 
 
